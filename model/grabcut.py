@@ -10,7 +10,7 @@ class GrabCut(object):
         self.gamma = gamma
 
 
-    def segment(self, src, fore, T):
+    def segment(self, src, fore, T, dname):
         self.__init_params(src, fore)
         height, width, _ = src.shape
         for t in range(T):
@@ -23,7 +23,7 @@ class GrabCut(object):
             self.__build_graph(g, eprop, gaussf, pi, src)
             res = graph_tool.flow.edmonds_karp_max_flow(g, g.vertex(0), g.vertex(1), eprop)
             self.__update_alpha(g, res, width)
-            self.__save_segmented_image(src, 'result/segment{0}.png'.format(t))
+            self.__save_segmented_image(src, '{0}/seg{1}.png'.format(dname, t))
 
         return self.__segment_image(src)
 
