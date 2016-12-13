@@ -24,7 +24,6 @@ class GrabCut(object):
             res = graph_tool.flow.edmonds_karp_max_flow(g, g.vertex(0), g.vertex(1), eprop)
             self.__update_alpha(g, res, width)
             self.__save_segmented_image(src, '{0}/seg{1}.png'.format(dname, t))
-
         return self.__segment_image(src)
 
 
@@ -33,7 +32,8 @@ class GrabCut(object):
         tl_x, tl_y, br_x, br_y = fore
         self.alpha = np.zeros((height, width)).astype('uint')
         self.alpha[tl_y:br_y, tl_x:br_x] = 1
-        kai = (np.sum((src[:-1, :] - src[1:, :]) ** 2) + np.sum((src[:, :-1] - src[:, 1:]) ** 2)) / (height * width)
+        dy, dx = self.__d(src)
+        kai = (np.sum(dy ** 2) + np.sum(dx ** 2)) / (height * width)
         self.beta = 0.5 / kai
 
 
