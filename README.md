@@ -5,7 +5,7 @@ GrubCut: Markov Random Fileds in Image Segmentation
 
 ```
 git clone https://github.com/shota-takayama/grabcut_py.git
-cd grabcut
+cd grabcut_py
 python main.py
 ```
 
