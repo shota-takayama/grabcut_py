@@ -14,6 +14,5 @@ if __name__ == '__main__':
 
     # grabcut
     gc = GrabCut(3, 50.0)
-    fore = [30, 0, 150, 106]
-    T = 20
-    gc.segment(image, fore, T, dname)
+    tl, br = (0, 40), (106, 150)
+    gc.segment(image, tl, br, 20, dname)
